@@ -42,6 +42,23 @@ class AuthorView(ViewSet):
             
         serializer = AuthorSerializer(author, many=True)
         return Response(serializer.data)
+    
+    def create(self, request):
+        """Handle POST operations
+
+        Returns
+            Response -- JSON serialized game instance
+        """
+        author = Author.objects.create(
+            email=request.data["email"],
+            uid=request.data["uid"],
+            first_name=request.data["first_name"],
+            last_name=request.data["last_name"],
+            image=request.data["image"],
+            favorite=request.data["favorite"],
+        )
+        serializer = AuthorSerializer(author)
+        return Response(serializer.data)
         
 class AuthorSerializer(serializers.ModelSerializer):
     """JSON serializer for authors
