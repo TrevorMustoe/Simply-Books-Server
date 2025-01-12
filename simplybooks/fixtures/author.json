@@ -1,0 +1,39 @@
+[
+  {
+    "model": "simplybooks.author",
+    "pk": 1,
+    "fields": {
+      "email": "author1@example.com",
+      "first_name": "Riley",
+      "last_name": "Sager",
+      "image": "http://example.com/images/author1.jpg",
+      "favorite": true,
+      "uid": "JXFfiBoM7XNXY3s4OGuAbfRBBGd2"
+    }
+  },
+  {
+    "model": "simplybooks.author",
+    "pk": 2,
+    "fields": {
+      "email": "author1@example.com",
+      "first_name": "R. F.",
+      "last_name": "Kuang",
+      "image": "http://example.com/images/author1.jpg",
+      "favorite": true,
+      "uid": "JXFfiBoM7XNXY3s4OGuAbfRBBGd2"
+    }
+  },
+  {
+    "model": "simplybooks.author",
+    "pk": 3,
+    "fields": {
+      "email": "author1@example.com",
+      "first_name": "William",
+      "last_name": "Gibson",
+      "image": "http://example.com/images/author1.jpg",
+      "favorite": true,
+      "uid": "JXFfiBoM7XNXY3s4OGuAbfRBBGd2"
+    }
+  }
+
+]

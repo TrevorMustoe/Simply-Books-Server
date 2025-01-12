@@ -1,0 +1,41 @@
+[
+  {
+    "model": "simplybooks.book",
+    "pk": 1,
+    "fields": {
+      "author_id": "1",
+      "title": "House Across The Lake",
+      "image": "http://example.com/images/book1.jpg",
+      "price": 3000,
+      "sale": false,
+      "uid": "JXFfiBoM7XNXY3s4OGuAbfRBBGd2",
+      "description": "scary story about a lake house"
+    }
+  },
+{
+  "model": "simplybooks.book",
+  "pk": 2,
+  "fields": {
+    "author_id": "2",
+    "title": "Bable",
+    "image": "http://example.com/images/book1.jpg",
+    "price": 30,
+    "sale": false,
+    "uid": "JXFfiBoM7XNXY3s4OGuAbfRBBGd2",
+    "description": "my brain hurts"
+  }
+},
+{
+  "model": "simplybooks.book",
+  "pk": 3,
+  "fields": {
+    "author_id": "3",
+    "title": "Neuromancer",
+    "image": "http://example.com/images/book1.jpg",
+    "price": 30,
+    "sale": false,
+    "uid": "JXFfiBoM7XNXY3s4OGuAbfRBBGd2",
+    "description": "the matrix"
+  }
+}
+]
