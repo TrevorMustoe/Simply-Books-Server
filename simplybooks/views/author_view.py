@@ -1,4 +1,4 @@
-"""View module for handling requests about game types"""
+"""View module for handling requests about author """
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -7,13 +7,13 @@ from simplybooks.models import Author
 
 
 class AuthorView(ViewSet):
-    """Level up game types view"""
+    """Level up author s view"""
 
     def retrieve(self, request, pk):
-        """Handle GET requests for single game type
+        """Handle GET requests for single author 
 
         Returns:
-            Response -- JSON serialized game type
+            Response -- JSON serialized author 
         """
         author = Author.objects.get(pk=pk)
         serializer = AuthorSerializer(author)
@@ -21,13 +21,26 @@ class AuthorView(ViewSet):
 
 
     def list(self, request):
-        """Handle GET requests to get all game types
+        """Handle GET requests to get all author 
 
         Returns:
-            Response -- JSON serialized list of game types
+            Response -- JSON serialized list of author 
         """
-        game_types = Author.objects.all()
-        serializer = AuthorSerializer(game_types, many=True)
+        author = Author.objects.all()
+        
+        uid = request.query_params.get('uid', None)
+        
+        
+        # Here we are checking if uid is set to anything other than None and if it is we are returning books filtered by this UID 
+        # This totally works just make sure you have a / after your book in the request. 
+        # example:
+        # http://localhost:8000/book?uid=1
+        if uid is not None:
+            author = author.filter(uid=uid)
+            #This is where we could add another statement that returns everthing else that is considereed "public since there is no UID present"
+            
+            
+        serializer = AuthorSerializer(author, many=True)
         return Response(serializer.data)
         
 class AuthorSerializer(serializers.ModelSerializer):
