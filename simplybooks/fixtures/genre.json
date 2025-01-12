@@ -1,0 +1,23 @@
+[
+  {
+  "model": "simplybooks.genre",
+  "pk": 1,
+  "fields": {
+    "genre_name": "Thriller"
+  }
+},
+{
+  "model": "simplybooks.genre",
+  "pk": 2,
+  "fields": {
+    "genre_name": "Horror"
+  }
+},
+{
+  "model": "simplybooks.genre",
+  "pk": 3,
+  "fields": {
+    "genre_name": "Lit Fiction"
+  }
+}
+]
