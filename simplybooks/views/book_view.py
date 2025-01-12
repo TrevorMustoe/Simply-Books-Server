@@ -1,4 +1,4 @@
-"""View module for handling requests about game types"""
+"""View module for handling requests about book """
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -7,27 +7,46 @@ from simplybooks.models import Book
 
 
 class BookView(ViewSet):
-    """Level up game types view"""
+    """Level up book  view"""
 
     def retrieve(self, request, pk):
-        """Handle GET requests for single game type
+        """Handle GET requests for single book 
 
         Returns:
-            Response -- JSON serialized game type
+            Response -- JSON serialized book 
         """
+        # Here we are getting a single book by the primary key (pk)  
         book = Book.objects.get(pk=pk)
+        # sending it to our serializer to be converted to useable json
         serializer = BookSerializer(book)
+        # then returing the serialzed data
         return Response(serializer.data)
 
 
     def list(self, request):
-        """Handle GET requests to get all game types
+        """Handle GET requests to get all book  
 
         Returns:
-            Response -- JSON serialized list of game types
+            Response -- JSON serialized list of book 
         """
-        game_types = Book.objects.all()
-        serializer = BookSerializer(game_types, many=True)
+        #Book is a variable stores the data accessed through our books model in this case we are accessing all of the data
+        book = Book.objects.all()
+        
+        # This allows us to use query pararmams to be set for uid and favorite
+        uid = request.query_params.get('uid', None)
+        
+        
+        # Here we are checking if uid is set to anything other than None and if it is we are returning books filtered by this UID 
+        # This totally works just make sure you have a / after your book in the request. 
+        # example:
+        # http://localhost:8000/book?uid=1
+        if uid is not None:
+            book = book.filter(uid=uid)
+            #This is where we could add another statement that returns everthing else that is considereed "public since there is no UID present"
+   
+   
+         #This is serializing the data and converting it to a json    
+        serializer = BookSerializer(book, many=True)
         return Response(serializer.data)
         
 class BookSerializer(serializers.ModelSerializer):
