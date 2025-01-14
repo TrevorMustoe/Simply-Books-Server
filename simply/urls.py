@@ -18,11 +18,13 @@ from django.conf.urls import include
 from rest_framework import routers
 from simplybooks.views import BookView
 from simplybooks.views import AuthorView
+from simplybooks.views import Genre_Book_View
 from django.contrib import admin
 from django.urls import path
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'book', BookView, 'book')
+router.register(r'genre_book', Genre_Book_View, 'genre_book')
 router.register(r'author', AuthorView, 'author')
 
 urlpatterns = [
