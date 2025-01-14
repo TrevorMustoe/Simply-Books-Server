@@ -16,7 +16,7 @@ class BookView(ViewSet):
         Returns:
             Response -- JSON serialized book 
         """
-        # Here we are getting a single book by the primary key (pk)  
+        # Here we are getting a single book by the primary key (pk) 
         book = Book.objects.get(pk=pk)
         # sending it to our serializer to be converted to useable json
         serializer = BookSerializer(book)
@@ -33,7 +33,7 @@ class BookView(ViewSet):
         #Book is a variable stores the data accessed through our books model in this case we are accessing all of the data
         book = Book.objects.all()
         
-        # This allows us to use query pararmams to be set for uid and favorite
+        # This allows us to use query pararmams to be set for uid and favorite 
         uid = request.query_params.get('uid', None)
         
         
@@ -81,6 +81,29 @@ class BookView(ViewSet):
         )
         serializer = BookSerializer(book)
         return Response(serializer.data)
+    
+    
+    def update(self, request, pk):
+        """Handle PUT requests for a book"""
+
+        # Fetch the book to be updated
+        book = Book.objects.get(pk=pk)
+
+        # Fetch the author based on the `author` field
+        author = Author.objects.get(pk=request.data["author"])
+
+        # Update book details
+        book.uid = request.data["uid"]
+        book.title = request.data["title"]
+        book.image = request.data["image"]
+        book.price = request.data["price"]
+        book.sale = request.data["sale"]
+        book.description = request.data["description"]
+        book.author = author  # Update the author relationship
+        book.save()
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
         
 class BookSerializer(serializers.ModelSerializer):
     """JSON serializer for books
