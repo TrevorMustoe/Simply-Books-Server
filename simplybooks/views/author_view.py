@@ -59,6 +59,25 @@ class AuthorView(ViewSet):
         )
         serializer = AuthorSerializer(author)
         return Response(serializer.data)
+    
+    def update(self, request, pk):
+        """Handle PUT requests for a book"""
+
+        # Fetch the book to be updated
+        author = Author.objects.get(pk=pk)
+
+    
+
+        # Update book details
+        author.email = request.data["email"]
+        author.uid = request.data["uid"]
+        author.first_name = request.data["first_name"]
+        author.last_name = request.data["last_name"]
+        author.image = request.data["image"]
+        author.favorite = request.data["favorite"]
+        author.save()
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
         
 class AuthorSerializer(serializers.ModelSerializer):
     """JSON serializer for authors
