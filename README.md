@@ -1,12 +1,13 @@
-Simply Books Server
+## Simply Books Server
 The Simply Books API provides a streamlined way to manage books and authors with CRUD functionality, user-specific data access, and Firebase authentication.
 
-Features
+## Features
 Books: Add, update, and delete books, including their titles, authors, prices, sale status, and descriptions.
 Authors: Manage authors with their personal details and favorite status.
 Genres: Categorize books by genres and manage them.
 User Authentication: Books and authors are linked to the authenticated user's UID, ensuring user-specific data access.
-Endpoints
+
+## Endpoints
 Books
 GET /book
 Retrieve a list of all books.
